@@ -1,0 +1,2857 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="physical_clock$s" id="381" x="1220" y="-922">
+    <field name="name">Kiloticks</field>
+    <field name="tick">tick</field>
+    <field name="offset">tick</field>
+    <field name="frequency_offset">  ?  </field>
+    <field name="stability">  ?  </field>
+    <field name="wander">  ?  </field>
+    <field name="jitter">  ?  </field>
+    <field name="granularity">  ?  </field>
+    <field name="#drift">+</field>
+    <field name="#accuracy">+</field>
+    <field name="#instant">+</field>
+    <field name="#external_sync">+</field>
+    <field name="#internal_sync">+</field>
+    <field name="#oscillator">+</field>
+    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. T1
+2. T1
+    </requirement>
+    <data>T1,T1</data>
+    <statement name="has:accuracy">
+      <block type="accuracy$i" id="382" collapsed="true">
+        <field name="name">1/32 of a second</field>
+        <field name="#reference_clock">+</field>
+      </block>
+    </statement>
+    <statement name="measures:instant">
+      <block type="instant$i" id="383">
+        <field name="name">Kilotick</field>
+      </block>
+    </statement>
+    <statement name="is_based_on:external_sync">
+      <block type="external_sync$s" id="384">
+        <field name="name">OHC</field>
+        <comment pinned="false" h="109" w="347">not synchronized because the OHC broadcast the commands, but the kilobots can receive this signal some millisecond later, and so, the kiloticks start later.</comment>
+      </block>
+    </statement>
+  </block>
+  <block type="dynamic_service$s" id="484" x="-8" y="-807">
+    <field name="name">ToWitch</field>
+    <field name="#service">+</field>
+    <statement name="variation_to:service">
+      <block type="service$s" id="485" collapsed="true">
+        <field name="name">the kilobot 1 chose a color, the kilobot that have this color become the Witch</field>
+        <field name="#state_variable">+</field>
+      </block>
+    </statement>
+    <next>
+      <block type="dynamic_service$s" id="488">
+        <field name="name">ToTarget</field>
+        <field name="#service">+</field>
+        <statement name="variation_to:service">
+          <block type="service$s" id="489" collapsed="true">
+            <field name="name">the witch chose  a color, the kilobot that have this color become the Target kilobot (or runner)</field>
+            <field name="#state_variable">+</field>
+          </block>
+        </statement>
+        <next>
+          <block type="dynamic_interaction$s" id="493">
+            <field name="name">ListenWitch</field>
+            <field name="#interaction">+</field>
+            <statement name="variation_to:interaction">
+              <block type="interaction$s" id="494" collapsed="true">
+                <field name="name">Every bot stop to listen the witch and start to try to catch the target, when the witch broadcast the target color</field>
+                <field name="transferred_information">  ?  </field>
+                <field name="temporal_property">  ?  </field>
+                <field name="dependability_requirement">  ?  </field>
+                <field name="#information">+</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="environment$s" id="52" x="-110" y="-370">
+    <field name="name">Witheboard</field>
+    <field name="#situation_assessment">+</field>
+    <field name="#action">+</field>
+    <field name="#entity">+</field>
+    <field name="#state_variable">+</field>
+    <field name="#state_variable">+</field>
+    <field name="#system">+</field>
+    <field name="#evolution">+</field>
+    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A1
+2. A2
+    </requirement>
+    <data>A1,A2</data>
+    <statement name="has:entity">
+      <block type="thing$s" id="54">
+        <field name="name">board</field>
+        <field name="#dynamicity">+</field>
+        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A1
+2. A2
+        </requirement>
+        <data>A1,A2</data>
+      </block>
+    </statement>
+  </block>
+  <block type="emergent_phenomenon$s" id="611" x="684" y="-374">
+    <field name="name">Creation of a Network which includes all kilobots </field>
+    <field name="#behaviour">+</field>
+    <statement name="causes:behaviour">
+      <block type="expected_and_beneficial_behaviour$i" id="612">
+        <field name="name">This will Allows to coordinate, giving to kilobots information about distances from the others and from the target bot. Give a sort of "relative positioning" information.</field>
+      </block>
+    </statement>
+    <next>
+      <block type="emergent_phenomenon$s" id="616">
+        <field name="name">Utilization of an appropriate communication protocol</field>
+        <field name="#behaviour">+</field>
+        <statement name="causes:behaviour">
+          <block type="expected_and_beneficial_behaviour$i" id="617">
+            <field name="name">To exchange information that kilobots need to play the game in the right way</field>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+  <block type="requirements" id="26" x="1029" y="-102">
+    <requirement pinned="false" h="100" w="200">All requirements have been met</requirement>
+    <statement name="Architecture_requirements">
+      <block type="simple_requirement" id="28">
+        <field name="req_id">A1</field>
+        <field name="title">Kilobots will operate in a space of at least 100x80cm</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Environment : Witheboard
+2. Thing : board
+        </requirement>
+        <data>52,54</data>
+        <next>
+          <block type="simple_requirement" id="280">
+            <field name="req_id">A2</field>
+            <field name="title">For Infrared the surface is glossy and reflective</field>
+            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Environment : Witheboard
+2. Thing : board
+            </requirement>
+            <data>52,54</data>
+            <next>
+              <block type="simple_requirement" id="282">
+                <field name="req_id">A3</field>
+                <field name="title">The SoS will  be composed of at least 5 kilobots and a controller (One witch, 2 players and 2 colors)</field>
+                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. CS : Kilobot_0
+2. CS : Kilobot_1
+3. CS : Kilobot_2
+4. CS : Kilobot_3
+5. CS : Kilobot_4
+6. CS : Kilobot_5
+7. CS : Kilobot_6
+8. CS : Kilobot_7
+9. CS : Kilobot_8
+10. CS : Kilobot_9
+                </requirement>
+                <data>686,3,1240,1179,1118,1057,996,935,869,793</data>
+                <next>
+                  <block type="simple_requirement" id="284">
+                    <field name="req_id">A4</field>
+                    <field name="title">At the beginning of the program execution we have assigned positions for Kilobots </field>
+                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Role player : Human_operator
+                    </requirement>
+                    <data>93</data>
+                    <next>
+                      <block type="simple_requirement" id="292">
+                        <field name="req_id">A5</field>
+                        <field name="title">Each Kilobots will have ID, Color and Positions </field>
+                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. CS : Kilobot_0
+2. CS : Kilobot_1
+3. CS : Kilobot_2
+4. CS : Kilobot_3
+5. CS : Kilobot_4
+6. CS : Kilobot_5
+7. CS : Kilobot_6
+8. CS : Kilobot_7
+9. CS : Kilobot_8
+10. CS : Kilobot_9
+                        </requirement>
+                        <data>686,3,1240,1179,1118,1057,996,935,869,793</data>
+                        <next>
+                          <block type="simple_requirement" id="288">
+                            <field name="req_id">A6</field>
+                            <field name="title">At the beginning when the game starts the player search the color and witch search the player </field>
+                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. CS : Kilobot_0
+2. CS : Kilobot_1
+3. CS : Kilobot_2
+4. CS : Kilobot_3
+5. CS : Kilobot_4
+6. CS : Kilobot_5
+7. CS : Kilobot_6
+8. CS : Kilobot_7
+9. CS : Kilobot_8
+10. CS : Kilobot_9
+                            </requirement>
+                            <data>686,3,1240,1179,1118,1057,996,935,869,793</data>
+                            <next>
+                              <block type="simple_requirement" id="290">
+                                <field name="req_id">A7</field>
+                                <field name="title">Witch and players kilobots waiting for the signal to each other to run</field>
+                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : Choose witch
+                                </requirement>
+                                <data>837</data>
+                                <next>
+                                  <block type="simple_requirement" id="575">
+                                    <field name="req_id">A8</field>
+                                    <field name="title">The target color will be chosen by program itself</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : Choose target
+2. Service : Choose target
+3. Service : Choose target
+4. Service : Choose target
+5. Service : Choose target
+6. Service : Choose target
+7. Service : Choose target
+8. Service : Choose target
+9. Service : Choose target
+10. Service : Choose target
+                                    </requirement>
+                                    <data>720,375,1250,1189,1128,1005,944,878</data>
+                                    <next>
+                                      <block type="simple_requirement" id="294">
+                                        <field name="req_id">A9</field>
+                                        <field name="title">During the game all of the kilobots like witch and players searching each other</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : Catch target
+2. Service : Catch target
+3. Service : Catch target
+4. Service : Catch target
+5. Service : Catch target
+6. Service : Catch target
+7. Service : Catch target
+8. Service : Catch target
+9. Service : Catch target
+10. Service : Catch target
+                                        </requirement>
+                                        <data>717,346,1248,1187,1126,1065,1004,943,877,801</data>
+                                        <next>
+                                          <block type="simple_requirement" id="577">
+                                            <field name="req_id">A10</field>
+                                            <field name="title">During the game the witch trying to catch the players and the players will be searching the color. If witch catch the players then this player will be the witch for the next round of the game</field>
+                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : Run away
+2. Service : Run away
+3. Service : Run away
+4. Service : Run away
+5. Service : Run away
+6. Service : Run away
+7. Service : Run away
+8. Service : Run away
+9. Service : Run away
+10. Service : Run away
+                                            </requirement>
+                                            <data>718,632,1249,1188,1127,1066</data>
+                                            <next>
+                                              <block type="simple_requirement" id="579">
+                                                <field name="req_id">A11</field>
+                                                <field name="title">The round will be finished when players kilobots catch the color</field>
+                                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Service : Catch target
+2. Service : Catch target
+3. Service : Catch target
+4. Service : Catch target
+5. Service : Catch target
+6. Service : Catch target
+7. Service : Catch target
+8. Service : Catch target
+9. Service : Catch target
+10. Service : Catch target
+                                                </requirement>
+                                                <data>717,346,1248,1187,1126,1065,1004,943,877,801,1067,1006,945,879</data>
+                                                <next>
+                                                  <block type="simple_requirement" id="581">
+                                                    <field name="req_id">A12</field>
+                                                    <field name="title">Each kilobot will have two independent motors</field>
+                                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. CS : Kilobot_0
+2. CS : Kilobot_1
+3. CS : Kilobot_2
+4. CS : Kilobot_3
+5. CS : Kilobot_4
+6. CS : Kilobot_5
+7. CS : Kilobot_6
+8. CS : Kilobot_7
+9. CS : Kilobot_8
+10. CS : Kilobot_9
+                                                    </requirement>
+                                                    <data>686,3,1240,1179,1118,1057,996,935,869,793</data>
+                                                    <next>
+                                                      <block type="simple_requirement" id="296">
+                                                        <field name="req_id">A13</field>
+                                                        <field name="title">Each kilobot will have an infrared transmitter and receiver</field>
+                                                        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Controlled object : motors
+2. Controlled object : motors
+3. Controlled object : motors
+4. Controlled object : motors
+5. Controlled object : motors
+6. Controlled object : motors
+7. Controlled object : motors
+8. Controlled object : motors
+9. Controlled object : motors
+10. Controlled object : motors
+                                                        </requirement>
+                                                        <data>724,33,1254,1193,1132,1071,1010,949,884,807</data>
+                                                        <next>
+                                                          <block type="simple_requirement" id="298">
+                                                            <field name="req_id">A14</field>
+                                                            <field name="title">A kilobot will be able to estimate relative distance from other bots from the Environment</field>
+                                                            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Controlled object : infrared sensor
+2. Controlled object : infrared sensor
+3. Controlled object : infrared sensor
+4. Controlled object : infrared sensor
+5. Controlled object : infrared sensor
+6. Controlled object : infrared sensor
+7. Controlled object : infrared sensor
+8. Controlled object : infrared sensor
+9. Controlled object : infrared sensor
+10. Controlled object : infrared sensor
+                                                            </requirement>
+                                                            <data>725,35,1255,1194,1133,1072,1011,950,885,809</data>
+                                                            <next>
+                                                              <block type="simple_requirement" id="311">
+                                                                <field name="req_id">A15</field>
+                                                                <field name="title">A kilobot will operate in one of at least three states: run, bootload or sleep</field>
+                                                                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State space : Motions
+2. State space : Motions
+3. State space : Motions
+4. State space : Motions
+5. State space : Motions
+6. State space : Motions
+7. State space : Motions
+8. State space : Motions
+                                                                </requirement>
+                                                                <data>688,1059,1120,1181,998,937,871,795</data>
+                                                                <next>
+                                                                  <block type="simple_requirement" id="313">
+                                                                    <field name="req_id">A16</field>
+                                                                    <field name="title">Through a message interface each kilobot will be able to communicate to    every other kilobit.</field>
+                                                                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : Msg_bot0
+2. RUMI : Msg_bot1
+3. RUMI : Msg_bot2
+4. RUMI : Msg_bot3
+5. RUMI : Msg_bot4
+6. RUMI : Msg_bot5
+7. RUMI : Msg_bot6
+8. RUMI : Msg_bot7
+9. RUMI : Msg_bot8
+10. RUMI : Msg_bot9
+                                                                    </requirement>
+                                                                    <data>726,40,1256,1195,1134,1073,1012,951,888,812</data>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="Communication_requirements">
+      <block type="simple_requirement" id="439">
+        <field name="req_id">C1</field>
+        <field name="title">All kilobots will be able to receive messages from overhead controller</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : infrared_broadcast
+2. State variable : messages received from OHC
+        </requirement>
+        <data>92,735</data>
+        <next>
+          <block type="simple_requirement" id="441">
+            <field name="req_id">C2</field>
+            <field name="title">kilobots shall be considered as communicating, when they are within 7.5 cm distance from each other</field>
+            <comment pinned="false" h="80" w="160">kilobots start moving with spiral movement. They will stop when they find a kilobot that have ID=1 or ID!=1 but communicate with  ID=1 in some way.</comment>
+            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : Msg_bot0
+2. RUMI : Msg_bot1
+3. RUMI : Msg_bot2
+4. RUMI : Msg_bot3
+5. RUMI : Msg_bot4
+6. RUMI : Msg_bot5
+7. RUMI : Msg_bot6
+8. RUMI : Msg_bot7
+9. RUMI : Msg_bot8
+10. RUMI : Msg_bot9
+            </requirement>
+            <data>726,40,1256,1195,1134,1073,1012,951,888,812</data>
+            <next>
+              <block type="simple_requirement" id="348">
+                <field name="req_id">C3</field>
+                <field name="title">The connection between all the kilobots shall be established at the beginning of each round </field>
+                <comment pinned="false" h="80" w="160">kilobots start moving with spiral movement. They will stop when they find a kilobot that have ID=1 or ID!=1 but communicate with  ID=1 in some way.</comment>
+                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : Kilobots_network
+                </requirement>
+                <data>852</data>
+                <next>
+                  <block type="simple_requirement" id="583">
+                    <field name="req_id">C4</field>
+                    <field name="title">There should exist a unique kilobot operating as as a central communication coordinator</field>
+                    <comment pinned="false" h="80" w="160">kilobots start moving with spiral movement. They will stop when they find a kilobot that have ID=1 or ID!=1 but communicate with  ID=1 in some way.</comment>
+                    <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. CS : Kilobot_1
+2. Service : Service / Central point of communication
+                    </requirement>
+                    <data>3,490</data>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="Dependability_requirements">
+      <block type="simple_requirement" id="585">
+        <field name="req_id">D1</field>
+        <field name="title">Availability: charged battery is necessary for kilobots</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. State space : Motions
+2. State space : Motions
+3. State space : Motions
+4. State space : Motions
+5. State space : Motions
+6. State space : Motions
+7. State space : Motions
+8. State space : Motions
+9. State space : Motions
+10. State space : Motions
+        </requirement>
+        <data>688,327,1242,1181,1120,1059,998,937,871,795</data>
+        <next>
+          <block type="simple_requirement" id="470">
+            <field name="req_id">D2</field>
+            <field name="title">Reliability: the kilobots have to start each game round only when they communicate with all the others because they don’t provide the necessary service</field>
+            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. System resource : Battery
+2. System resource : Battery
+3. System resource : Battery
+4. System resource : Battery
+5. System resource : Battery
+6. System resource : Battery
+7. System resource : Battery
+8. System resource : Battery
+9. System resource : Battery
+10. System resource : Battery
+            </requirement>
+            <data>734,323,1264,1203,1142,1081,1020,959,896,820</data>
+            <next>
+              <block type="simple_requirement" id="474">
+                <field name="req_id">D3</field>
+                <field name="title">Integrity: It is fundamental that this SoS doesn’t have improper state to function correctly</field>
+                <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : Kilobots_network
+2. Connecting strategy : Everyone conected
+                </requirement>
+                <data>852,865</data>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="Dynamicity_requirements">
+      <block type="simple_requirement" id="343">
+        <field name="req_id">Dy1</field>
+        <field name="title">A kilobot moving out of range of communication will start moving to find the other kilobots to become a part of the netwok again</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+2. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+3. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+4. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+5. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+6. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+7. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+8. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+9. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+10. Dynamic interaction : If a kilobot exit range of comm. they start searching others
+        </requirement>
+        <data>737,808,1268,1207,1146,1085,1024,963,900,824</data>
+      </block>
+    </statement>
+    <statement name="Time_requirements">
+      <block type="simple_requirement" id="355">
+        <field name="req_id">T1</field>
+        <field name="title">Each kilobot will have a notion of time based internal clock</field>
+        <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. Physical clock : Kiloticks
+        </requirement>
+        <data>381</data>
+        <next>
+          <block type="simple_requirement" id="357">
+            <field name="req_id">T2</field>
+            <field name="title">Kilobots shall be able to communicate over their network within 10 seconds for every message sent</field>
+            <requirement pinned="false" h="100" w="200">Satisfied by block(s) :
+--------------------------------
+1. RUMI : Kilobots_network
+            </requirement>
+            <data>852</data>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="SoS$s" id="1" x="-109" y="98">
+    <field name="name">witch_says_color</field>
+    <field name="sos_type">directed</field>
+    <field name="#system">+</field>
+    <field name="#evolution">+</field>
+    <field name="#dependability_guarantee">+</field>
+    <field name="#behaviour">+</field>
+    <field name="#security">+</field>
+    <comment pinned="false" h="159" w="767">This is an example System-of-Systems (SoS) block named "example_block", on the work-space.
+
+You may:
+ 1. Drag the block/work-space with the mouse.
+ 2. Minimize / Maximize / Partially minimize a block by double clicking on it.
+ 3. Drag and drop new blocks from the Toolbox from *left* hand side.
+ 4. Add related blocks to this block by clicking (+) drop-down below.
+ 5. Right click on the block/work-space to see a menu.
+ 6. Close this *comment* by clicking on the (?) button.
+    </comment>
+    <statement name="is_composed_of:system">
+      <block type="CS$s" id="2" collapsed="true">
+        <field name="cardinality">1</field>
+        <field name="name">OHC</field>
+        <field name="system_type">autonomous</field>
+        <field name="#boundary">+</field>
+        <field name="#state_space">+</field>
+        <field name="#HMI">+</field>
+        <field name="#CPS">+</field>
+        <field name="#service">+</field>
+        <field name="#role_player">+</field>
+        <field name="#physical_system">+</field>
+        <field name="#RUI">+</field>
+        <field name="#dependability_guarantee">+</field>
+        <field name="#fault_containment_region">+</field>
+        <field name="#MAPE_algorithm">+</field>
+        <field name="#security">+</field>
+        <field name="#clock">+</field>
+        <field name="#system_resource">+</field>
+        <field name="#architectural_style">+</field>
+        <field name="#subsystem">+</field>
+        <field name="#state_variable">+</field>
+        <field name="#interface">+</field>
+        <field name="#dynamicity">+</field>
+        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A3
+        </requirement>
+        <data>A3</data>
+        <statement name="has_a:state_space">
+          <block type="state_space$s" id="83">
+            <field name="name">humans_requests</field>
+            <field name="#state">+</field>
+            <statement name="has:state">
+              <block type="state$s" id="81">
+                <field name="name">send_sleep</field>
+                <next>
+                  <block type="state$s" id="85">
+                    <field name="name">send_run</field>
+                    <next>
+                      <block type="state$s" id="87">
+                        <field name="name">send_bootload</field>
+                        <next>
+                          <block type="state$s" id="89">
+                            <field name="name">send_load</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <statement name="is_composed_of:HMI">
+          <block type="HMI$s" id="91">
+            <field name="name">KiloGUI</field>
+          </block>
+        </statement>
+        <statement name="interacts_with:CPS">
+          <block type="CPS$s" id="96" collapsed="true">
+            <field name="cardinality">10</field>
+            <field name="name">kilobots</field>
+            <field name="#role_player">+</field>
+            <field name="#physical_system">+</field>
+            <field name="#cyber_system">+</field>
+          </block>
+        </statement>
+        <statement name="interacts_with:role_player">
+          <block type="role_player$s" id="93">
+            <field name="cardinality">1</field>
+            <field name="name">Human_operator</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A4
+            </requirement>
+          </block>
+        </statement>
+        <statement name="has:RUI">
+          <block type="RUMI$s" id="92">
+            <field name="name">infrared_broadcast</field>
+            <field name="has_connection">FALSE</field>
+            <field name="#connecting_strategy">+</field>
+            <field name="#interface_specification">+</field>
+            <field name="#interface_port">+</field>
+            <field name="#afferent_environment">+</field>
+            <field name="#efferent_environment">+</field>
+            <field name="#interface_model">+</field>
+            <field name="#service">+</field>
+            <field name="#message">+</field>
+            <field name="#RUMI">+</field>
+            <field name="#probe">+</field>
+            <field name="#security">+</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. C1
+            </requirement>
+            <data>C1</data>
+            <statement name="connects:RUMI">
+              <block type="__link" id="299">
+                <field name="link_to">RUMI / Msg_bot1</field>
+                <data>RUMI : 40 : 0</data>
+                <next>
+                  <block type="__link" id="520">
+                    <field name="link_to">RUMI / Msg_bot0</field>
+                    <data>RUMI : 726 : 0</data>
+                    <next>
+                      <block type="__link" id="521">
+                        <field name="link_to">RUMI / Msg_bot2</field>
+                        <data>RUMI : 1256 : 0</data>
+                        <next>
+                          <block type="__link" id="522">
+                            <field name="link_to">RUMI / Msg_bot3</field>
+                            <data>RUMI : 1195 : 0</data>
+                            <next>
+                              <block type="__link" id="523">
+                                <field name="link_to">RUMI / Msg_bot4</field>
+                                <data>RUMI : 1134 : 0</data>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <statement name="provides:interface">
+          <block type="__link" id="48">
+            <field name="link_to">RUMI / infrared_broadcast</field>
+            <data>RUMI : 92 : 0</data>
+          </block>
+        </statement>
+        <next>
+          <block type="CS$s" id="686">
+            <field name="cardinality">1</field>
+            <field name="name">Kilobot_0</field>
+            <field name="system_type">autonomous</field>
+            <field name="#boundary">+</field>
+            <field name="#state_space">+</field>
+            <field name="#HMI">+</field>
+            <field name="#CPS">+</field>
+            <field name="#service">+</field>
+            <field name="#role_player">+</field>
+            <field name="#physical_system">+</field>
+            <field name="#RUI">+</field>
+            <field name="#dependability_guarantee">+</field>
+            <field name="#fault_containment_region">+</field>
+            <field name="#MAPE_algorithm">+</field>
+            <field name="#security">+</field>
+            <field name="#clock">+</field>
+            <field name="#system_resource">+</field>
+            <field name="#architectural_style">+</field>
+            <field name="#subsystem">+</field>
+            <field name="#state_variable">+</field>
+            <field name="#interface">+</field>
+            <field name="#dynamicity">+</field>
+            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A3
+2. A3
+3. A5
+4. A6
+5. A12
+            </requirement>
+            <data>A3,A3,A5,A6,A12</data>
+            <statement name="has_a:boundary">
+              <block type="boundary$i" id="687">
+                <field name="name">Range of 7.5 cm</field>
+                <comment pinned="false" h="80" w="160">because the infrared sensor can't read nothing distant more than 7.5 cm</comment>
+              </block>
+            </statement>
+            <statement name="has_a:state_space">
+              <block type="state_space$i" id="688">
+                <field name="name">Motions</field>
+                <field name="#state">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A15
+2. D1
+                </requirement>
+                <data>A15,D1</data>
+                <statement name="has:state">
+                  <block type="state$s" id="689">
+                    <field name="name">bootload</field>
+                    <next>
+                      <block type="state$s" id="690">
+                        <field name="name">run</field>
+                        <next>
+                          <block type="state$s" id="691">
+                            <field name="name">sleep</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+            <statement name="interacts_with:CPS">
+              <block type="__link" id="701">
+                <field name="link_to">CPS / kilobots</field>
+                <data>CPS : 96 : 0</data>
+              </block>
+            </statement>
+            <statement name="provides:service">
+              <block type="service$s" id="717">
+                <field name="name">Catch target</field>
+                <field name="#state_variable">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A9
+2. A11
+                </requirement>
+                <data>A9,A11</data>
+                <next>
+                  <block type="service$s" id="718">
+                    <field name="name">Run away</field>
+                    <field name="#state_variable">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A10
+                    </requirement>
+                    <data>A10</data>
+                    <next>
+                      <block type="service$s" id="720">
+                        <field name="name">Choose target</field>
+                        <field name="#state_variable">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A8
+                        </requirement>
+                        <data>A8</data>
+                        <next>
+                          <block type="service$s" id="721" collapsed="true">
+                            <field name="name">Broadcast_witch</field>
+                            <field name="#state_variable">+</field>
+                            <next>
+                              <block type="service$s" id="722" collapsed="true">
+                                <field name="name">Broadcast_target</field>
+                                <field name="#state_variable">+</field>
+                                <next>
+                                  <block type="service$s" id="723" collapsed="true">
+                                    <field name="name">Send_color and distance to target</field>
+                                    <field name="#state_variable">+</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="is_composed_of:physical_system">
+              <block type="controlled_object$s" id="724">
+                <field name="cardinality">2</field>
+                <field name="name">motors</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A13
+                </requirement>
+                <data>A13</data>
+                <next>
+                  <block type="controlled_object$s" id="725">
+                    <field name="cardinality">1</field>
+                    <field name="name">infrared sensor</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A14
+2. A17
+                    </requirement>
+                    <data>A14,A17</data>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="has:RUI">
+              <block type="RUMI$s" id="726">
+                <field name="name">Msg_bot0</field>
+                <field name="has_connection">FALSE</field>
+                <field name="#connecting_strategy">+</field>
+                <field name="#interface_specification">+</field>
+                <field name="#interface_port">+</field>
+                <field name="#afferent_environment">+</field>
+                <field name="#efferent_environment">+</field>
+                <field name="#interface_model">+</field>
+                <field name="#service">+</field>
+                <field name="#message">+</field>
+                <field name="#RUMI">+</field>
+                <field name="#probe">+</field>
+                <field name="#security">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A16
+2. C2
+                </requirement>
+                <data>A16,C2</data>
+                <statement name="exchanges:message">
+                  <block type="message$s" id="727" collapsed="true">
+                    <field name="name">Informations</field>
+                    <field name="transport_type">PAR_message</field>
+                    <field name="header">  ?  </field>
+                    <field name="data_field">  ?  </field>
+                    <field name="#message_classification">+</field>
+                    <field name="#trailer">+</field>
+                  </block>
+                </statement>
+                <next>
+                  <block type="RUPI$s" id="728" collapsed="true">
+                    <field name="name">Infrared_bot0</field>
+                    <field name="has_connection">FALSE</field>
+                    <field name="#connecting_strategy">+</field>
+                    <field name="#interface_specification">+</field>
+                    <field name="#interface_port">+</field>
+                    <field name="#afferent_environment">+</field>
+                    <field name="#efferent_environment">+</field>
+                    <field name="#interface_model">+</field>
+                    <field name="#thing">+</field>
+                    <field name="#environment">+</field>
+                    <field name="#RUPI">+</field>
+                    <field name="#probe">+</field>
+                    <field name="#security">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A17
+                    </requirement>
+                    <data>A17</data>
+                    <statement name="tranports:thing">
+                      <block type="thing$s" id="729">
+                        <field name="name">Distance measure</field>
+                        <field name="#dynamicity">+</field>
+                      </block>
+                    </statement>
+                    <statement name="affects:environment">
+                      <block type="__link" id="730">
+                        <field name="link_to">Environment / Witheboard</field>
+                        <data>environment : 52 : 0</data>
+                      </block>
+                    </statement>
+                    <statement name="is_monitored_through:probe">
+                      <block type="probe$s" id="731">
+                        <field name="name">infrared sensor</field>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="satisfies_the_condition_of:security">
+              <block type="security$s" id="732" collapsed="true">
+                <field name="name">Integrity: no fult/error/failure states</field>
+                <field name="#cryptography">+</field>
+              </block>
+            </statement>
+            <statement name="shares:clock">
+              <block type="__link" id="733">
+                <field name="link_to">Physical clock / Kiloticks</field>
+                <data>physical_clock : 381 : 0</data>
+              </block>
+            </statement>
+            <statement name="has:system_resource">
+              <block type="system_resource$s" id="734">
+                <field name="name">Battery</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D2
+                </requirement>
+                <data>D2</data>
+              </block>
+            </statement>
+            <statement name="has:state_variable">
+              <block type="state_variable$s" id="735" collapsed="true">
+                <field name="name">messages received from OHC</field>
+                <field name="value">  ?  </field>
+                <field name="#state">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. C1
+                </requirement>
+                <data>C1</data>
+              </block>
+            </statement>
+            <statement name="provides:interface">
+              <block type="__link" id="762">
+                <field name="link_to">RUPI / Infrared_bot0</field>
+                <data>RUPI : 728 : 0</data>
+                <next>
+                  <block type="__link" id="529">
+                    <field name="link_to">RUMI / Msg_bot0</field>
+                    <data>RUMI : 726 : 0</data>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="has:dynamicity">
+              <block type="dynamic_interaction$s" id="737">
+                <field name="name">If a kilobot exit range of comm. they start searching others</field>
+                <field name="#interaction">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. Dy1
+                </requirement>
+                <data>Dy1</data>
+                <next>
+                  <block type="dynamic_interaction$s" id="738" collapsed="true">
+                    <field name="name">If target exit range of a group of bots, they may continue moving in a group even if not communicating with target bot</field>
+                    <field name="#interaction">+</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="CS$s" id="3">
+                <field name="cardinality">1</field>
+                <field name="name">Kilobot_1</field>
+                <field name="system_type">autonomous</field>
+                <field name="#boundary">+</field>
+                <field name="#state_space">+</field>
+                <field name="#HMI">+</field>
+                <field name="#CPS">+</field>
+                <field name="#service">+</field>
+                <field name="#role_player">+</field>
+                <field name="#physical_system">+</field>
+                <field name="#RUI">+</field>
+                <field name="#dependability_guarantee">+</field>
+                <field name="#fault_containment_region">+</field>
+                <field name="#MAPE_algorithm">+</field>
+                <field name="#security">+</field>
+                <field name="#clock">+</field>
+                <field name="#system_resource">+</field>
+                <field name="#architectural_style">+</field>
+                <field name="#subsystem">+</field>
+                <field name="#state_variable">+</field>
+                <field name="#interface">+</field>
+                <field name="#dynamicity">+</field>
+                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A3
+2. C4
+3. A5
+4. A6
+5. A12
+                </requirement>
+                <data>A3,C4,A5,A6,A12</data>
+                <statement name="has_a:boundary">
+                  <block type="boundary$i" id="324">
+                    <field name="name">Range of 7.5 cm</field>
+                    <comment pinned="false" h="80" w="160">because the infrared sensor can't read nothing distant more than 7.5 cm</comment>
+                  </block>
+                </statement>
+                <statement name="has_a:state_space">
+                  <block type="state_space$i" id="327">
+                    <field name="name">Motions</field>
+                    <field name="#state">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D1
+                    </requirement>
+                    <data>D1</data>
+                    <statement name="has:state">
+                      <block type="state$s" id="328">
+                        <field name="name">bootload</field>
+                        <next>
+                          <block type="state$s" id="329">
+                            <field name="name">run</field>
+                            <next>
+                              <block type="state$s" id="330">
+                                <field name="name">sleep</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <statement name="interacts_with:CPS">
+                  <block type="__link" id="29">
+                    <field name="link_to">CPS / kilobots</field>
+                    <data>CPS : 96 : 0</data>
+                  </block>
+                </statement>
+                <statement name="provides:service">
+                  <block type="service$s" id="490">
+                    <field name="name">Service / Central point of communication</field>
+                    <field name="#state_variable">+</field>
+                    <comment pinned="false" h="80" w="160">is used like reference for the other bot. We use kilobot 1 to implement our communication protocol. we use it like a central entity that coordinate messages</comment>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. C4
+                    </requirement>
+                    <data>C4</data>
+                    <next>
+                      <block type="service$s" id="346" collapsed="true">
+                        <field name="name">Catch target</field>
+                        <field name="#state_variable">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A9
+2. A11
+                        </requirement>
+                        <data>A9,A11</data>
+                        <next>
+                          <block type="service$s" id="632">
+                            <field name="name">Run away</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A10
+                            </requirement>
+                            <data>A10</data>
+                            <next>
+                              <block type="service$s" id="837">
+                                <field name="name">Choose witch</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A7
+                                </requirement>
+                                <data>A7</data>
+                                <next>
+                                  <block type="service$s" id="375" collapsed="true">
+                                    <field name="name">Choose target</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A8
+                                    </requirement>
+                                    <data>A8</data>
+                                    <next>
+                                      <block type="service$s" id="499" collapsed="true">
+                                        <field name="name">Broadcast_witch</field>
+                                        <field name="#state_variable">+</field>
+                                        <next>
+                                          <block type="service$s" id="501" collapsed="true">
+                                            <field name="name">Broadcast_target</field>
+                                            <field name="#state_variable">+</field>
+                                            <next>
+                                              <block type="service$s" id="503" collapsed="true">
+                                                <field name="name">Send_color and distance to target</field>
+                                                <field name="#state_variable">+</field>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="is_composed_of:physical_system">
+                  <block type="controlled_object$s" id="33">
+                    <field name="cardinality">2</field>
+                    <field name="name">motors</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A13
+                    </requirement>
+                    <data>A13</data>
+                    <next>
+                      <block type="controlled_object$s" id="35">
+                        <field name="cardinality">1</field>
+                        <field name="name">infrared sensor</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A14
+2. A17
+                        </requirement>
+                        <data>A14,A17</data>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="has:RUI">
+                  <block type="RUMI$s" id="40" collapsed="true">
+                    <field name="name">Msg_bot1</field>
+                    <field name="has_connection">FALSE</field>
+                    <field name="#connecting_strategy">+</field>
+                    <field name="#interface_specification">+</field>
+                    <field name="#interface_port">+</field>
+                    <field name="#afferent_environment">+</field>
+                    <field name="#efferent_environment">+</field>
+                    <field name="#interface_model">+</field>
+                    <field name="#service">+</field>
+                    <field name="#message">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#probe">+</field>
+                    <field name="#security">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A16
+2. C2
+                    </requirement>
+                    <data>A16,C2</data>
+                    <statement name="exchanges:message">
+                      <block type="message$s" id="333" collapsed="true">
+                        <field name="name">Informations</field>
+                        <field name="transport_type">PAR_message</field>
+                        <field name="header">  ?  </field>
+                        <field name="data_field">  ?  </field>
+                        <field name="#message_classification">+</field>
+                        <field name="#trailer">+</field>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="RUPI$s" id="276" collapsed="true">
+                        <field name="name">Infrared_bot1</field>
+                        <field name="has_connection">FALSE</field>
+                        <field name="#connecting_strategy">+</field>
+                        <field name="#interface_specification">+</field>
+                        <field name="#interface_port">+</field>
+                        <field name="#afferent_environment">+</field>
+                        <field name="#efferent_environment">+</field>
+                        <field name="#interface_model">+</field>
+                        <field name="#thing">+</field>
+                        <field name="#environment">+</field>
+                        <field name="#RUPI">+</field>
+                        <field name="#probe">+</field>
+                        <field name="#security">+</field>
+                        <statement name="tranports:thing">
+                          <block type="thing$s" id="278">
+                            <field name="name">Distance measure</field>
+                            <field name="#dynamicity">+</field>
+                          </block>
+                        </statement>
+                        <statement name="affects:environment">
+                          <block type="__link" id="293">
+                            <field name="link_to">Environment / Witheboard</field>
+                            <data>environment : 52 : 0</data>
+                          </block>
+                        </statement>
+                        <statement name="is_monitored_through:probe">
+                          <block type="probe$s" id="291">
+                            <field name="name">infrared sensor</field>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="satisfies_the_condition_of:security">
+                  <block type="security$s" id="321" collapsed="true">
+                    <field name="name">Integrity: no fult/error/failure states</field>
+                    <field name="#cryptography">+</field>
+                  </block>
+                </statement>
+                <statement name="shares:clock">
+                  <block type="__link" id="811">
+                    <field name="link_to">Physical clock / Kiloticks</field>
+                    <data>physical_clock : 381 : 0</data>
+                  </block>
+                </statement>
+                <statement name="has:system_resource">
+                  <block type="system_resource$s" id="323">
+                    <field name="name">Battery</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D2
+                    </requirement>
+                    <data>D2</data>
+                  </block>
+                </statement>
+                <statement name="has:state_variable">
+                  <block type="state_variable$s" id="331" collapsed="true">
+                    <field name="name">messages received from OHC</field>
+                    <field name="value">  ?  </field>
+                    <field name="#state">+</field>
+                  </block>
+                </statement>
+                <statement name="provides:interface">
+                  <block type="__link" id="45">
+                    <field name="link_to">RUMI / Msg_bot1</field>
+                    <data>RUMI : 40 : 0</data>
+                    <next>
+                      <block type="__link" id="747">
+                        <field name="link_to">RUPI / Infrared_bot1</field>
+                        <data>RUPI : 276 : 0</data>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="has:dynamicity">
+                  <block type="dynamic_interaction$s" id="808" collapsed="true">
+                    <field name="name">If a kilobot exit range of comm. they start searching others</field>
+                    <field name="#interaction">+</field>
+                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. Dy1
+                    </requirement>
+                    <data>Dy1</data>
+                    <next>
+                      <block type="dynamic_interaction$s" id="810" collapsed="true">
+                        <field name="name">If target exit range of a group of bots, they may continue moving in a group even if not communicating with target bot</field>
+                        <field name="#interaction">+</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="CS$s" id="1240">
+                    <field name="cardinality">1</field>
+                    <field name="name">Kilobot_2</field>
+                    <field name="system_type">autonomous</field>
+                    <field name="#boundary">+</field>
+                    <field name="#state_space">+</field>
+                    <field name="#HMI">+</field>
+                    <field name="#CPS">+</field>
+                    <field name="#service">+</field>
+                    <field name="#role_player">+</field>
+                    <field name="#physical_system">+</field>
+                    <field name="#RUI">+</field>
+                    <field name="#dependability_guarantee">+</field>
+                    <field name="#fault_containment_region">+</field>
+                    <field name="#MAPE_algorithm">+</field>
+                    <field name="#security">+</field>
+                    <field name="#clock">+</field>
+                    <field name="#system_resource">+</field>
+                    <field name="#architectural_style">+</field>
+                    <field name="#subsystem">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#interface">+</field>
+                    <field name="#dynamicity">+</field>
+                    <requirement pinned="false" h="57" w="183">Satisfies requirement(s) :
+-------------------------------------
+1. A3
+2. A5
+3. A6
+4. A12
+                    </requirement>
+                    <data>A3,A5,A6,A12</data>
+                    <statement name="has_a:boundary">
+                      <block type="boundary$i" id="1241">
+                        <field name="name">Range of 7.5 cm</field>
+                        <comment pinned="false" h="80" w="160">because the infrared sensor can't read nothing distant more than 7.5 cm</comment>
+                      </block>
+                    </statement>
+                    <statement name="has_a:state_space">
+                      <block type="state_space$i" id="1242">
+                        <field name="name">Motions</field>
+                        <field name="#state">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D1
+                        </requirement>
+                        <data>D1</data>
+                        <statement name="has:state">
+                          <block type="state$s" id="1243">
+                            <field name="name">bootload</field>
+                            <next>
+                              <block type="state$s" id="1244">
+                                <field name="name">run</field>
+                                <next>
+                                  <block type="state$s" id="1245">
+                                    <field name="name">sleep</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <statement name="interacts_with:CPS">
+                      <block type="__link" id="1247">
+                        <field name="link_to">CPS / kilobots</field>
+                        <data>CPS : 96 : 0</data>
+                      </block>
+                    </statement>
+                    <statement name="provides:service">
+                      <block type="service$s" id="1248" collapsed="true">
+                        <field name="name">Catch target</field>
+                        <field name="#state_variable">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A9
+2. A11
+                        </requirement>
+                        <data>A9,A11</data>
+                        <next>
+                          <block type="service$s" id="1249" collapsed="true">
+                            <field name="name">Run away</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A10
+                            </requirement>
+                            <data>A10</data>
+                            <next>
+                              <block type="service$s" id="1250" collapsed="true">
+                                <field name="name">Choose target</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A8
+                                </requirement>
+                                <data>A8</data>
+                                <next>
+                                  <block type="service$s" id="1251" collapsed="true">
+                                    <field name="name">Broadcast_witch</field>
+                                    <field name="#state_variable">+</field>
+                                    <next>
+                                      <block type="service$s" id="1252" collapsed="true">
+                                        <field name="name">Broadcast_target</field>
+                                        <field name="#state_variable">+</field>
+                                        <next>
+                                          <block type="service$s" id="1253" collapsed="true">
+                                            <field name="name">Send_color and distance to target</field>
+                                            <field name="#state_variable">+</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="is_composed_of:physical_system">
+                      <block type="controlled_object$s" id="1254">
+                        <field name="cardinality">2</field>
+                        <field name="name">motors</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A13
+                        </requirement>
+                        <data>A13</data>
+                        <next>
+                          <block type="controlled_object$s" id="1255">
+                            <field name="cardinality">1</field>
+                            <field name="name">infrared sensor</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A14
+2. A17
+                            </requirement>
+                            <data>A14,A17</data>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="has:RUI">
+                      <block type="RUMI$s" id="1256" collapsed="true">
+                        <field name="name">Msg_bot2</field>
+                        <field name="has_connection">FALSE</field>
+                        <field name="#connecting_strategy">+</field>
+                        <field name="#interface_specification">+</field>
+                        <field name="#interface_port">+</field>
+                        <field name="#afferent_environment">+</field>
+                        <field name="#efferent_environment">+</field>
+                        <field name="#interface_model">+</field>
+                        <field name="#service">+</field>
+                        <field name="#message">+</field>
+                        <field name="#RUMI">+</field>
+                        <field name="#probe">+</field>
+                        <field name="#security">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A16
+2. C2
+                        </requirement>
+                        <data>A16,C2</data>
+                        <statement name="exchanges:message">
+                          <block type="message$s" id="1257" collapsed="true">
+                            <field name="name">Informations</field>
+                            <field name="transport_type">PAR_message</field>
+                            <field name="header">  ?  </field>
+                            <field name="data_field">  ?  </field>
+                            <field name="#message_classification">+</field>
+                            <field name="#trailer">+</field>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="RUPI$s" id="1258" collapsed="true">
+                            <field name="name">Infrared_bot2</field>
+                            <field name="has_connection">FALSE</field>
+                            <field name="#connecting_strategy">+</field>
+                            <field name="#interface_specification">+</field>
+                            <field name="#interface_port">+</field>
+                            <field name="#afferent_environment">+</field>
+                            <field name="#efferent_environment">+</field>
+                            <field name="#interface_model">+</field>
+                            <field name="#thing">+</field>
+                            <field name="#environment">+</field>
+                            <field name="#RUPI">+</field>
+                            <field name="#probe">+</field>
+                            <field name="#security">+</field>
+                            <statement name="tranports:thing">
+                              <block type="thing$s" id="1259">
+                                <field name="name">Distance measure</field>
+                                <field name="#dynamicity">+</field>
+                              </block>
+                            </statement>
+                            <statement name="affects:environment">
+                              <block type="__link" id="1260">
+                                <field name="link_to">Environment / Witheboard</field>
+                                <data>environment : 52 : 0</data>
+                              </block>
+                            </statement>
+                            <statement name="is_monitored_through:probe">
+                              <block type="probe$s" id="1261">
+                                <field name="name">infrared sensor</field>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="satisfies_the_condition_of:security">
+                      <block type="security$s" id="1262" collapsed="true">
+                        <field name="name">Integrity: no fult/error/failure states</field>
+                        <field name="#cryptography">+</field>
+                      </block>
+                    </statement>
+                    <statement name="shares:clock">
+                      <block type="__link" id="1263">
+                        <field name="link_to">Physical clock / Kiloticks</field>
+                        <data>physical_clock : 381 : 0</data>
+                      </block>
+                    </statement>
+                    <statement name="has:system_resource">
+                      <block type="system_resource$s" id="1264">
+                        <field name="name">Battery</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D2
+                        </requirement>
+                        <data>D2</data>
+                      </block>
+                    </statement>
+                    <statement name="has:state_variable">
+                      <block type="state_variable$s" id="1265" collapsed="true">
+                        <field name="name">messages received from OHC</field>
+                        <field name="value">  ?  </field>
+                        <field name="#state">+</field>
+                      </block>
+                    </statement>
+                    <statement name="provides:interface">
+                      <block type="__link" id="1270">
+                        <field name="link_to">RUPI / Infrared_bot2</field>
+                        <data>RUPI : 1258 : 0</data>
+                        <next>
+                          <block type="__link" id="545">
+                            <field name="link_to">RUMI / Msg_bot2</field>
+                            <data>RUMI : 1256 : 0</data>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="has:dynamicity">
+                      <block type="dynamic_interaction$s" id="1268" collapsed="true">
+                        <field name="name">If a kilobot exit range of comm. they start searching others</field>
+                        <field name="#interaction">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. Dy1
+                        </requirement>
+                        <data>Dy1</data>
+                        <next>
+                          <block type="dynamic_interaction$s" id="1269" collapsed="true">
+                            <field name="name">If target exit range of a group of bots, they may continue moving in a group even if not communicating with target bot</field>
+                            <field name="#interaction">+</field>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="CS$s" id="1179">
+                        <field name="cardinality">1</field>
+                        <field name="name">Kilobot_3</field>
+                        <field name="system_type">autonomous</field>
+                        <field name="#boundary">+</field>
+                        <field name="#state_space">+</field>
+                        <field name="#HMI">+</field>
+                        <field name="#CPS">+</field>
+                        <field name="#service">+</field>
+                        <field name="#role_player">+</field>
+                        <field name="#physical_system">+</field>
+                        <field name="#RUI">+</field>
+                        <field name="#dependability_guarantee">+</field>
+                        <field name="#fault_containment_region">+</field>
+                        <field name="#MAPE_algorithm">+</field>
+                        <field name="#security">+</field>
+                        <field name="#clock">+</field>
+                        <field name="#system_resource">+</field>
+                        <field name="#architectural_style">+</field>
+                        <field name="#subsystem">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#interface">+</field>
+                        <field name="#dynamicity">+</field>
+                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A3
+2. A5
+3. A6
+4. A12
+                        </requirement>
+                        <data>A3,A5,A6,A12</data>
+                        <statement name="has_a:boundary">
+                          <block type="boundary$i" id="1180">
+                            <field name="name">Range of 7.5 cm</field>
+                            <comment pinned="false" h="80" w="160">because the infrared sensor can't read nothing distant more than 7.5 cm</comment>
+                          </block>
+                        </statement>
+                        <statement name="has_a:state_space">
+                          <block type="state_space$i" id="1181" collapsed="true">
+                            <field name="name">Motions</field>
+                            <field name="#state">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D1
+2. A15
+                            </requirement>
+                            <data>D1,A15</data>
+                            <statement name="has:state">
+                              <block type="state$s" id="1182">
+                                <field name="name">bootload</field>
+                                <next>
+                                  <block type="state$s" id="1183">
+                                    <field name="name">run</field>
+                                    <next>
+                                      <block type="state$s" id="1184">
+                                        <field name="name">sleep</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                        <statement name="interacts_with:CPS">
+                          <block type="__link" id="1186">
+                            <field name="link_to">CPS / kilobots</field>
+                            <data>CPS : 96 : 0</data>
+                          </block>
+                        </statement>
+                        <statement name="provides:service">
+                          <block type="service$s" id="1187" collapsed="true">
+                            <field name="name">Catch target</field>
+                            <field name="#state_variable">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A9
+2. A11
+                            </requirement>
+                            <data>A9,A11</data>
+                            <next>
+                              <block type="service$s" id="1188" collapsed="true">
+                                <field name="name">Run away</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A10
+                                </requirement>
+                                <data>A10</data>
+                                <next>
+                                  <block type="service$s" id="1189" collapsed="true">
+                                    <field name="name">Choose target</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A8
+                                    </requirement>
+                                    <data>A8</data>
+                                    <next>
+                                      <block type="service$s" id="1190" collapsed="true">
+                                        <field name="name">Broadcast_witch</field>
+                                        <field name="#state_variable">+</field>
+                                        <next>
+                                          <block type="service$s" id="1191" collapsed="true">
+                                            <field name="name">Broadcast_target</field>
+                                            <field name="#state_variable">+</field>
+                                            <next>
+                                              <block type="service$s" id="1192" collapsed="true">
+                                                <field name="name">Send_color and distance to target</field>
+                                                <field name="#state_variable">+</field>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="is_composed_of:physical_system">
+                          <block type="controlled_object$s" id="1193">
+                            <field name="cardinality">2</field>
+                            <field name="name">motors</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A13
+                            </requirement>
+                            <data>A13</data>
+                            <next>
+                              <block type="controlled_object$s" id="1194">
+                                <field name="cardinality">1</field>
+                                <field name="name">infrared sensor</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A14
+2. A17
+                                </requirement>
+                                <data>A14,A17</data>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="has:RUI">
+                          <block type="RUMI$s" id="1195" collapsed="true">
+                            <field name="name">Msg_bot3</field>
+                            <field name="has_connection">FALSE</field>
+                            <field name="#connecting_strategy">+</field>
+                            <field name="#interface_specification">+</field>
+                            <field name="#interface_port">+</field>
+                            <field name="#afferent_environment">+</field>
+                            <field name="#efferent_environment">+</field>
+                            <field name="#interface_model">+</field>
+                            <field name="#service">+</field>
+                            <field name="#message">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#probe">+</field>
+                            <field name="#security">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A16
+2. C2
+                            </requirement>
+                            <data>A16,C2</data>
+                            <statement name="exchanges:message">
+                              <block type="message$s" id="1196" collapsed="true">
+                                <field name="name">Informations</field>
+                                <field name="transport_type">PAR_message</field>
+                                <field name="header">  ?  </field>
+                                <field name="data_field">  ?  </field>
+                                <field name="#message_classification">+</field>
+                                <field name="#trailer">+</field>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="RUPI$s" id="1197" collapsed="true">
+                                <field name="name">Infrared_bot3</field>
+                                <field name="has_connection">FALSE</field>
+                                <field name="#connecting_strategy">+</field>
+                                <field name="#interface_specification">+</field>
+                                <field name="#interface_port">+</field>
+                                <field name="#afferent_environment">+</field>
+                                <field name="#efferent_environment">+</field>
+                                <field name="#interface_model">+</field>
+                                <field name="#thing">+</field>
+                                <field name="#environment">+</field>
+                                <field name="#RUPI">+</field>
+                                <field name="#probe">+</field>
+                                <field name="#security">+</field>
+                                <statement name="tranports:thing">
+                                  <block type="thing$s" id="1198">
+                                    <field name="name">Distance measure</field>
+                                    <field name="#dynamicity">+</field>
+                                  </block>
+                                </statement>
+                                <statement name="affects:environment">
+                                  <block type="__link" id="1199">
+                                    <field name="link_to">Environment / Witheboard</field>
+                                    <data>environment : 52 : 0</data>
+                                  </block>
+                                </statement>
+                                <statement name="is_monitored_through:probe">
+                                  <block type="probe$s" id="1200">
+                                    <field name="name">infrared sensor</field>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="satisfies_the_condition_of:security">
+                          <block type="security$s" id="1201" collapsed="true">
+                            <field name="name">Integrity: no fult/error/failure states</field>
+                            <field name="#cryptography">+</field>
+                          </block>
+                        </statement>
+                        <statement name="shares:clock">
+                          <block type="__link" id="1202">
+                            <field name="link_to">Physical clock / Kiloticks</field>
+                            <data>physical_clock : 381 : 0</data>
+                          </block>
+                        </statement>
+                        <statement name="has:system_resource">
+                          <block type="system_resource$s" id="1203">
+                            <field name="name">Battery</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D2
+                            </requirement>
+                            <data>D2</data>
+                          </block>
+                        </statement>
+                        <statement name="has:state_variable">
+                          <block type="state_variable$s" id="1204" collapsed="true">
+                            <field name="name">messages received from OHC</field>
+                            <field name="value">  ?  </field>
+                            <field name="#state">+</field>
+                          </block>
+                        </statement>
+                        <statement name="provides:interface">
+                          <block type="__link" id="1209">
+                            <field name="link_to">RUMI / Msg_bot3</field>
+                            <data>RUMI : 1195 : 0</data>
+                            <next>
+                              <block type="__link" id="544">
+                                <field name="link_to">RUPI / Infrared_bot3</field>
+                                <data>RUPI : 1197 : 0</data>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="has:dynamicity">
+                          <block type="dynamic_interaction$s" id="1207" collapsed="true">
+                            <field name="name">If a kilobot exit range of comm. they start searching others</field>
+                            <field name="#interaction">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. Dy1
+                            </requirement>
+                            <data>Dy1</data>
+                            <next>
+                              <block type="dynamic_interaction$s" id="1208" collapsed="true">
+                                <field name="name">If target exit range of a group of bots, they may continue moving in a group even if not communicating with target bot</field>
+                                <field name="#interaction">+</field>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="CS$s" id="1118">
+                            <field name="cardinality">1</field>
+                            <field name="name">Kilobot_4</field>
+                            <field name="system_type">autonomous</field>
+                            <field name="#boundary">+</field>
+                            <field name="#state_space">+</field>
+                            <field name="#HMI">+</field>
+                            <field name="#CPS">+</field>
+                            <field name="#service">+</field>
+                            <field name="#role_player">+</field>
+                            <field name="#physical_system">+</field>
+                            <field name="#RUI">+</field>
+                            <field name="#dependability_guarantee">+</field>
+                            <field name="#fault_containment_region">+</field>
+                            <field name="#MAPE_algorithm">+</field>
+                            <field name="#security">+</field>
+                            <field name="#clock">+</field>
+                            <field name="#system_resource">+</field>
+                            <field name="#architectural_style">+</field>
+                            <field name="#subsystem">+</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#interface">+</field>
+                            <field name="#dynamicity">+</field>
+                            <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A3
+2. A5
+3. A6
+4. A12
+                            </requirement>
+                            <data>A3,A5,A6,A12</data>
+                            <statement name="has_a:boundary">
+                              <block type="boundary$i" id="1119">
+                                <field name="name">Range of 7.5 cm</field>
+                                <comment pinned="false" h="80" w="160">because the infrared sensor can't read nothing distant more than 7.5 cm</comment>
+                              </block>
+                            </statement>
+                            <statement name="has_a:state_space">
+                              <block type="state_space$i" id="1120">
+                                <field name="name">Motions</field>
+                                <field name="#state">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D1
+2. A15
+                                </requirement>
+                                <data>D1,A15</data>
+                                <statement name="has:state">
+                                  <block type="state$s" id="1121">
+                                    <field name="name">bootload</field>
+                                    <next>
+                                      <block type="state$s" id="1122">
+                                        <field name="name">run</field>
+                                        <next>
+                                          <block type="state$s" id="1123">
+                                            <field name="name">sleep</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </statement>
+                            <statement name="interacts_with:CPS">
+                              <block type="__link" id="1125">
+                                <field name="link_to">CPS / kilobots</field>
+                                <data>CPS : 96 : 0</data>
+                              </block>
+                            </statement>
+                            <statement name="provides:service">
+                              <block type="service$s" id="1126" collapsed="true">
+                                <field name="name">Catch target</field>
+                                <field name="#state_variable">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A9
+2. A11
+                                </requirement>
+                                <data>A9,A11</data>
+                                <next>
+                                  <block type="service$s" id="1127" collapsed="true">
+                                    <field name="name">Run away</field>
+                                    <field name="#state_variable">+</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A10
+                                    </requirement>
+                                    <data>A10</data>
+                                    <next>
+                                      <block type="service$s" id="1128" collapsed="true">
+                                        <field name="name">Choose target</field>
+                                        <field name="#state_variable">+</field>
+                                        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A8
+                                        </requirement>
+                                        <data>A8</data>
+                                        <next>
+                                          <block type="service$s" id="1129" collapsed="true">
+                                            <field name="name">Broadcast_witch</field>
+                                            <field name="#state_variable">+</field>
+                                            <next>
+                                              <block type="service$s" id="1130" collapsed="true">
+                                                <field name="name">Broadcast_target</field>
+                                                <field name="#state_variable">+</field>
+                                                <next>
+                                                  <block type="service$s" id="1131" collapsed="true">
+                                                    <field name="name">Send_color and distance to target</field>
+                                                    <field name="#state_variable">+</field>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <statement name="is_composed_of:physical_system">
+                              <block type="controlled_object$s" id="1132">
+                                <field name="cardinality">2</field>
+                                <field name="name">motors</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A13
+                                </requirement>
+                                <data>A13</data>
+                                <next>
+                                  <block type="controlled_object$s" id="1133">
+                                    <field name="cardinality">1</field>
+                                    <field name="name">infrared sensor</field>
+                                    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A14
+2. A17
+                                    </requirement>
+                                    <data>A14,A17</data>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <statement name="has:RUI">
+                              <block type="RUMI$s" id="1134" collapsed="true">
+                                <field name="name">Msg_bot4</field>
+                                <field name="has_connection">FALSE</field>
+                                <field name="#connecting_strategy">+</field>
+                                <field name="#interface_specification">+</field>
+                                <field name="#interface_port">+</field>
+                                <field name="#afferent_environment">+</field>
+                                <field name="#efferent_environment">+</field>
+                                <field name="#interface_model">+</field>
+                                <field name="#service">+</field>
+                                <field name="#message">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#probe">+</field>
+                                <field name="#security">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. A16
+2. C2
+                                </requirement>
+                                <data>A16,C2</data>
+                                <statement name="exchanges:message">
+                                  <block type="message$s" id="1135" collapsed="true">
+                                    <field name="name">Informations</field>
+                                    <field name="transport_type">PAR_message</field>
+                                    <field name="header">  ?  </field>
+                                    <field name="data_field">  ?  </field>
+                                    <field name="#message_classification">+</field>
+                                    <field name="#trailer">+</field>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="RUPI$s" id="1136" collapsed="true">
+                                    <field name="name">Infrared_bot4</field>
+                                    <field name="has_connection">FALSE</field>
+                                    <field name="#connecting_strategy">+</field>
+                                    <field name="#interface_specification">+</field>
+                                    <field name="#interface_port">+</field>
+                                    <field name="#afferent_environment">+</field>
+                                    <field name="#efferent_environment">+</field>
+                                    <field name="#interface_model">+</field>
+                                    <field name="#thing">+</field>
+                                    <field name="#environment">+</field>
+                                    <field name="#RUPI">+</field>
+                                    <field name="#probe">+</field>
+                                    <field name="#security">+</field>
+                                    <statement name="tranports:thing">
+                                      <block type="thing$s" id="1137">
+                                        <field name="name">Distance measure</field>
+                                        <field name="#dynamicity">+</field>
+                                      </block>
+                                    </statement>
+                                    <statement name="affects:environment">
+                                      <block type="__link" id="1138">
+                                        <field name="link_to">Environment / Witheboard</field>
+                                        <data>environment : 52 : 0</data>
+                                      </block>
+                                    </statement>
+                                    <statement name="is_monitored_through:probe">
+                                      <block type="probe$s" id="1139">
+                                        <field name="name">infrared sensor</field>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <statement name="satisfies_the_condition_of:security">
+                              <block type="security$s" id="1140" collapsed="true">
+                                <field name="name">Integrity: no fult/error/failure states</field>
+                                <field name="#cryptography">+</field>
+                              </block>
+                            </statement>
+                            <statement name="shares:clock">
+                              <block type="__link" id="1141">
+                                <field name="link_to">Physical clock / Kiloticks</field>
+                                <data>physical_clock : 381 : 0</data>
+                              </block>
+                            </statement>
+                            <statement name="has:system_resource">
+                              <block type="system_resource$s" id="1142">
+                                <field name="name">Battery</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D2
+                                </requirement>
+                                <data>D2</data>
+                              </block>
+                            </statement>
+                            <statement name="has:state_variable">
+                              <block type="state_variable$s" id="1143" collapsed="true">
+                                <field name="name">messages received from OHC</field>
+                                <field name="value">  ?  </field>
+                                <field name="#state">+</field>
+                              </block>
+                            </statement>
+                            <statement name="provides:interface">
+                              <block type="__link" id="1148">
+                                <field name="link_to">RUPI / Infrared_bot4</field>
+                                <data>RUPI : 1136 : 0</data>
+                                <next>
+                                  <block type="__link" id="537">
+                                    <field name="link_to">RUMI / Msg_bot4</field>
+                                    <data>RUMI : 1134 : 0</data>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <statement name="has:dynamicity">
+                              <block type="dynamic_interaction$s" id="1146" collapsed="true">
+                                <field name="name">If a kilobot exit range of comm. they start searching others</field>
+                                <field name="#interaction">+</field>
+                                <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. Dy1
+                                </requirement>
+                                <data>Dy1</data>
+                                <next>
+                                  <block type="dynamic_interaction$s" id="1147" collapsed="true">
+                                    <field name="name">If target exit range of a group of bots, they may continue moving in a group even if not communicating with target bot</field>
+                                    <field name="#interaction">+</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="is_modified_by:evolution">
+      <block type="managed_evolution$s" id="334" collapsed="true">
+        <field name="name">Change number of bots playing</field>
+        <field name="#goal">+</field>
+        <field name="#business_value">+</field>
+        <field name="#system_resource">+</field>
+      </block>
+    </statement>
+    <statement name="has:behaviour">
+      <block type="expected_and_beneficial_behaviour$s" id="335">
+        <field name="name">Play witch-says-color</field>
+        <next>
+          <block type="unexpected_and_detrimental_behaviour$s" id="337">
+            <field name="name">Turn around indefinitely</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="RUMI$s" id="852" x="2399" y="181">
+    <field name="name">Kilobots_network</field>
+    <field name="has_connection">FALSE</field>
+    <field name="#connecting_strategy">+</field>
+    <field name="#interface_specification">+</field>
+    <field name="#interface_port">+</field>
+    <field name="#afferent_environment">+</field>
+    <field name="#efferent_environment">+</field>
+    <field name="#interface_model">+</field>
+    <field name="#service">+</field>
+    <field name="#message">+</field>
+    <field name="#RUMI">+</field>
+    <field name="#probe">+</field>
+    <field name="#security">+</field>
+    <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. T2
+2. C3
+3. D3
+    </requirement>
+    <data>T2,C3,D3</data>
+    <statement name="has_a:connecting_strategy">
+      <block type="connecting_strategy$i" id="865" collapsed="true">
+        <field name="name">Everyone conected</field>
+        <field name="#stop_criteria">+</field>
+        <requirement pinned="false" h="100" w="200">Satisfies requirement(s) :
+-------------------------------------
+1. D3
+        </requirement>
+        <data>D3</data>
+      </block>
+    </statement>
+    <statement name="provides_exchange_of:service">
+      <block type="__link" id="853">
+        <field name="link_to">Service / Choose witch</field>
+        <data>service : 837 : 0</data>
+      </block>
+    </statement>
+    <statement name="connects:RUMI">
+      <block type="__link" id="855">
+        <field name="link_to">RUMI / Msg_bot1</field>
+        <data>RUMI : 40 : 0</data>
+        <next>
+          <block type="__link" id="1271">
+            <field name="link_to">RUMI / Msg_bot0</field>
+            <data>RUMI : 726 : 0</data>
+            <next>
+              <block type="__link" id="1272">
+                <field name="link_to">RUMI / Msg_bot2</field>
+                <data>RUMI : 1256 : 0</data>
+                <next>
+                  <block type="__link" id="1273">
+                    <field name="link_to">RUMI / Msg_bot3</field>
+                    <data>RUMI : 1195 : 0</data>
+                    <next>
+                      <block type="__link" id="1274">
+                        <field name="link_to">RUMI / Msg_bot4</field>
+                        <data>RUMI : 1134 : 0</data>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="sequence_diagram$s" id="825" collapsed="true" x="1767" y="1080">
+    <field name="name">Witch_says_color</field>
+    <field name="#sub_sequence">+</field>
+    <statement name="has:sub_sequence">
+      <block type="sub_sequence$s" id="826">
+        <field name="name">Play</field>
+        <field name="#sequence">+</field>
+        <statement name="has:sequence">
+          <block type="service_request$s" id="836" collapsed="true">
+            <field name="arguments_in_CSV">True</field>
+            <field name="on_condition">True</field>
+            <field name="#state_variable">+</field>
+            <field name="#service">+</field>
+            <field name="#RUMI">+</field>
+            <field name="#RUMI">+</field>
+            <field name="#state_variable">+</field>
+            <field name="#sequence">+</field>
+            <field name="#sequence">+</field>
+            <statement name="request:service">
+              <block type="__link" id="838">
+                <field name="link_to">Service / Choose witch</field>
+                <data>service : 837 : 1</data>
+              </block>
+            </statement>
+            <statement name="source:RUMI">
+              <block type="__link" id="843">
+                <field name="link_to">RUMI / Msg_bot1</field>
+                <data>RUMI : 40 : 1</data>
+              </block>
+            </statement>
+            <statement name="destination:RUMI">
+              <block type="__link" id="867">
+                <field name="link_to">RUMI / Kilobots_network</field>
+                <data>RUMI : 852 : 1</data>
+              </block>
+            </statement>
+            <next>
+              <block type="service_request$s" id="886" collapsed="true">
+                <field name="arguments_in_CSV">True</field>
+                <field name="on_condition">True</field>
+                <field name="#state_variable">+</field>
+                <field name="#service">+</field>
+                <field name="#RUMI">+</field>
+                <field name="#RUMI">+</field>
+                <field name="#state_variable">+</field>
+                <field name="#sequence">+</field>
+                <field name="#sequence">+</field>
+                <statement name="request:service">
+                  <block type="__link" id="513">
+                    <field name="link_to">Service / Broadcast_witch</field>
+                    <data>service : 499 : 1</data>
+                  </block>
+                </statement>
+                <statement name="source:RUMI">
+                  <block type="__link" id="887">
+                    <field name="link_to">RUMI / Kilobots_network</field>
+                    <data>RUMI : 852 : 1</data>
+                  </block>
+                </statement>
+                <statement name="destination:RUMI">
+                  <block type="__link" id="1280">
+                    <field name="link_to">RUMI / Msg_bot0</field>
+                    <data>RUMI : 726 : 1</data>
+                  </block>
+                </statement>
+                <next>
+                  <block type="service_request$s" id="592" collapsed="true">
+                    <field name="arguments_in_CSV">True</field>
+                    <field name="on_condition">True</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#service">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#RUMI">+</field>
+                    <field name="#state_variable">+</field>
+                    <field name="#sequence">+</field>
+                    <field name="#sequence">+</field>
+                    <statement name="request:service">
+                      <block type="__link" id="593">
+                        <field name="link_to">Service / Broadcast_witch</field>
+                        <data>service : 499 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="source:RUMI">
+                      <block type="__link" id="594">
+                        <field name="link_to">RUMI / Kilobots_network</field>
+                        <data>RUMI : 852 : 1</data>
+                      </block>
+                    </statement>
+                    <statement name="destination:RUMI">
+                      <block type="__link" id="1281">
+                        <field name="link_to">RUMI / Msg_bot2</field>
+                        <data>RUMI : 1256 : 1</data>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="If$s" id="1295">
+                        <field name="name">Witch</field>
+                        <field name="on_condition">Witch == 0</field>
+                        <field name="#CS">+</field>
+                        <field name="#state_variable">+</field>
+                        <field name="#sequence">+</field>
+                        <field name="#sequence">+</field>
+                        <statement name="cs:CS">
+                          <block type="__link" id="1340">
+                            <field name="link_to">CS / Kilobot_0</field>
+                            <data>CS : 686 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="check_on:state_variable">
+                          <block type="__link" id="1341">
+                            <field name="link_to">State variable / messages received from OHC</field>
+                            <data>state_variable : 1265 : 1</data>
+                          </block>
+                        </statement>
+                        <statement name="on_success:sequence">
+                          <block type="service_request$s" id="371" collapsed="true">
+                            <field name="arguments_in_CSV">True</field>
+                            <field name="on_condition">True</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#service">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#sequence">+</field>
+                            <field name="#sequence">+</field>
+                            <statement name="request:service">
+                              <block type="__link" id="376">
+                                <field name="link_to">Service / Choose target</field>
+                                <data>service : 375 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="source:RUMI">
+                              <block type="__link" id="1282">
+                                <field name="link_to">RUMI / Msg_bot0</field>
+                                <data>RUMI : 726 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="destination:RUMI">
+                              <block type="__link" id="373">
+                                <field name="link_to">RUMI / Kilobots_network</field>
+                                <data>RUMI : 852 : 1</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service_request$s" id="1289" collapsed="true">
+                                <field name="arguments_in_CSV">True</field>
+                                <field name="on_condition">True</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#service">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#sequence">+</field>
+                                <field name="#sequence">+</field>
+                                <statement name="request:service">
+                                  <block type="__link" id="1290">
+                                    <field name="link_to">Service / Broadcast_target</field>
+                                    <data>service : 722 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="source:RUMI">
+                                  <block type="__link" id="1291">
+                                    <field name="link_to">RUMI / Kilobots_network</field>
+                                    <data>RUMI : 852 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="destination:RUMI">
+                                  <block type="__link" id="1293">
+                                    <field name="link_to">RUMI / Msg_bot2</field>
+                                    <data>RUMI : 1256 : 1</data>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="on_failure:sequence">
+                          <block type="service_request$s" id="1326" collapsed="true">
+                            <field name="arguments_in_CSV">True</field>
+                            <field name="on_condition">True</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#service">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#sequence">+</field>
+                            <field name="#sequence">+</field>
+                            <statement name="request:service">
+                              <block type="__link" id="1327">
+                                <field name="link_to">Service / Choose target</field>
+                                <data>service : 375 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="source:RUMI">
+                              <block type="__link" id="1338">
+                                <field name="link_to">RUMI / Msg_bot2</field>
+                                <data>RUMI : 1256 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="destination:RUMI">
+                              <block type="__link" id="1329">
+                                <field name="link_to">RUMI / Kilobots_network</field>
+                                <data>RUMI : 852 : 1</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="service_request$s" id="1334" collapsed="true">
+                                <field name="arguments_in_CSV">True</field>
+                                <field name="on_condition">True</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#service">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#RUMI">+</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#sequence">+</field>
+                                <field name="#sequence">+</field>
+                                <statement name="request:service">
+                                  <block type="__link" id="1335">
+                                    <field name="link_to">Service / Broadcast_target</field>
+                                    <data>service : 722 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="source:RUMI">
+                                  <block type="__link" id="1336">
+                                    <field name="link_to">RUMI / Kilobots_network</field>
+                                    <data>RUMI : 852 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="destination:RUMI">
+                                  <block type="__link" id="1339">
+                                    <field name="link_to">RUMI / Msg_bot0</field>
+                                    <data>RUMI : 726 : 1</data>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="service_request$s" id="1330" collapsed="true">
+                            <field name="arguments_in_CSV">True</field>
+                            <field name="on_condition">True</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#service">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#RUMI">+</field>
+                            <field name="#state_variable">+</field>
+                            <field name="#sequence">+</field>
+                            <field name="#sequence">+</field>
+                            <statement name="request:service">
+                              <block type="__link" id="1331">
+                                <field name="link_to">Service / Broadcast_target</field>
+                                <data>service : 722 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="source:RUMI">
+                              <block type="__link" id="1332">
+                                <field name="link_to">RUMI / Kilobots_network</field>
+                                <data>RUMI : 852 : 1</data>
+                              </block>
+                            </statement>
+                            <statement name="destination:RUMI">
+                              <block type="__link" id="1333">
+                                <field name="link_to">RUMI / Msg_bot1</field>
+                                <data>RUMI : 40 : 1</data>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="While$s" id="1028">
+                                <field name="name">Playing</field>
+                                <field name="condition">target_catched != true</field>
+                                <field name="#CS">+</field>
+                                <field name="#state_variable">+</field>
+                                <field name="#sequence">+</field>
+                                <statement name="cs:CS">
+                                  <block type="__link" id="1029">
+                                    <field name="link_to">CS / Kilobot_0</field>
+                                    <data>CS : 686 : 1</data>
+                                  </block>
+                                </statement>
+                                <statement name="has:sequence">
+                                  <block type="service_request$s" id="868" collapsed="true">
+                                    <field name="arguments_in_CSV">True</field>
+                                    <field name="on_condition">True</field>
+                                    <field name="#state_variable">+</field>
+                                    <field name="#service">+</field>
+                                    <field name="#RUMI">+</field>
+                                    <field name="#RUMI">+</field>
+                                    <field name="#state_variable">+</field>
+                                    <field name="#sequence">+</field>
+                                    <field name="#sequence">+</field>
+                                    <statement name="request:service">
+                                      <block type="__link" id="1030">
+                                        <field name="link_to">Service / Send_color and distance to target</field>
+                                        <data>service : 503 : 1</data>
+                                      </block>
+                                    </statement>
+                                    <statement name="source:RUMI">
+                                      <block type="__link" id="1031">
+                                        <field name="link_to">RUMI / Msg_bot0</field>
+                                        <data>RUMI : 726 : 1</data>
+                                      </block>
+                                    </statement>
+                                    <statement name="destination:RUMI">
+                                      <block type="__link" id="1032">
+                                        <field name="link_to">RUMI / Msg_bot1</field>
+                                        <data>RUMI : 40 : 1</data>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="service_request$s" id="1037" collapsed="true">
+                                        <field name="arguments_in_CSV">True</field>
+                                        <field name="on_condition">True</field>
+                                        <field name="#state_variable">+</field>
+                                        <field name="#service">+</field>
+                                        <field name="#RUMI">+</field>
+                                        <field name="#RUMI">+</field>
+                                        <field name="#state_variable">+</field>
+                                        <field name="#sequence">+</field>
+                                        <field name="#sequence">+</field>
+                                        <statement name="request:service">
+                                          <block type="__link" id="1038">
+                                            <field name="link_to">Service / Send_color and distance to target</field>
+                                            <data>service : 503 : 1</data>
+                                          </block>
+                                        </statement>
+                                        <statement name="source:RUMI">
+                                          <block type="__link" id="1039">
+                                            <field name="link_to">RUMI / Msg_bot0</field>
+                                            <data>RUMI : 726 : 1</data>
+                                          </block>
+                                        </statement>
+                                        <statement name="destination:RUMI">
+                                          <block type="__link" id="1041">
+                                            <field name="link_to">RUMI / Msg_bot2</field>
+                                            <data>RUMI : 1256 : 1</data>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="service_request$s" id="1046" collapsed="true">
+                                            <field name="arguments_in_CSV">True</field>
+                                            <field name="on_condition">True</field>
+                                            <field name="#state_variable">+</field>
+                                            <field name="#service">+</field>
+                                            <field name="#RUMI">+</field>
+                                            <field name="#RUMI">+</field>
+                                            <field name="#state_variable">+</field>
+                                            <field name="#sequence">+</field>
+                                            <field name="#sequence">+</field>
+                                            <statement name="request:service">
+                                              <block type="__link" id="1047">
+                                                <field name="link_to">Service / Send_color and distance to target</field>
+                                                <data>service : 503 : 1</data>
+                                              </block>
+                                            </statement>
+                                            <statement name="source:RUMI">
+                                              <block type="__link" id="1050">
+                                                <field name="link_to">RUMI / Msg_bot1</field>
+                                                <data>RUMI : 40 : 1</data>
+                                              </block>
+                                            </statement>
+                                            <statement name="destination:RUMI">
+                                              <block type="__link" id="1051">
+                                                <field name="link_to">RUMI / Msg_bot0</field>
+                                                <data>RUMI : 726 : 1</data>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="service_request$s" id="1056" collapsed="true">
+                                                <field name="arguments_in_CSV">True</field>
+                                                <field name="on_condition">True</field>
+                                                <field name="#state_variable">+</field>
+                                                <field name="#service">+</field>
+                                                <field name="#RUMI">+</field>
+                                                <field name="#RUMI">+</field>
+                                                <field name="#state_variable">+</field>
+                                                <field name="#sequence">+</field>
+                                                <field name="#sequence">+</field>
+                                                <statement name="request:service">
+                                                  <block type="__link" id="1083">
+                                                    <field name="link_to">Service / Send_color and distance to target</field>
+                                                    <data>service : 503 : 1</data>
+                                                  </block>
+                                                </statement>
+                                                <statement name="source:RUMI">
+                                                  <block type="__link" id="1090">
+                                                    <field name="link_to">RUMI / Msg_bot1</field>
+                                                    <data>RUMI : 40 : 1</data>
+                                                  </block>
+                                                </statement>
+                                                <statement name="destination:RUMI">
+                                                  <block type="__link" id="1091">
+                                                    <field name="link_to">RUMI / Msg_bot2</field>
+                                                    <data>RUMI : 1256 : 1</data>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="service_request$s" id="1096" collapsed="true">
+                                                    <field name="arguments_in_CSV">True</field>
+                                                    <field name="on_condition">True</field>
+                                                    <field name="#state_variable">+</field>
+                                                    <field name="#service">+</field>
+                                                    <field name="#RUMI">+</field>
+                                                    <field name="#RUMI">+</field>
+                                                    <field name="#state_variable">+</field>
+                                                    <field name="#sequence">+</field>
+                                                    <field name="#sequence">+</field>
+                                                    <statement name="request:service">
+                                                      <block type="__link" id="1097">
+                                                        <field name="link_to">Service / Send_color and distance to target</field>
+                                                        <data>service : 503 : 1</data>
+                                                      </block>
+                                                    </statement>
+                                                    <statement name="source:RUMI">
+                                                      <block type="__link" id="1100">
+                                                        <field name="link_to">RUMI / Msg_bot2</field>
+                                                        <data>RUMI : 1256 : 1</data>
+                                                      </block>
+                                                    </statement>
+                                                    <statement name="destination:RUMI">
+                                                      <block type="__link" id="1101">
+                                                        <field name="link_to">RUMI / Msg_bot0</field>
+                                                        <data>RUMI : 726 : 1</data>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="service_request$s" id="1106" collapsed="true">
+                                                        <field name="arguments_in_CSV">True</field>
+                                                        <field name="on_condition">True</field>
+                                                        <field name="#state_variable">+</field>
+                                                        <field name="#service">+</field>
+                                                        <field name="#RUMI">+</field>
+                                                        <field name="#RUMI">+</field>
+                                                        <field name="#state_variable">+</field>
+                                                        <field name="#sequence">+</field>
+                                                        <field name="#sequence">+</field>
+                                                        <statement name="request:service">
+                                                          <block type="__link" id="1107">
+                                                            <field name="link_to">Service / Send_color and distance to target</field>
+                                                            <data>service : 503 : 1</data>
+                                                          </block>
+                                                        </statement>
+                                                        <statement name="source:RUMI">
+                                                          <block type="__link" id="1108">
+                                                            <field name="link_to">RUMI / Msg_bot2</field>
+                                                            <data>RUMI : 1256 : 1</data>
+                                                          </block>
+                                                        </statement>
+                                                        <statement name="destination:RUMI">
+                                                          <block type="__link" id="1110">
+                                                            <field name="link_to">RUMI / Msg_bot1</field>
+                                                            <data>RUMI : 40 : 1</data>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="send_thing$s" id="1112" collapsed="true">
+                                                            <field name="on_condition">True</field>
+                                                            <field name="#thing">+</field>
+                                                            <field name="#RUPI">+</field>
+                                                            <field name="#RUPI">+</field>
+                                                            <field name="#sequence">+</field>
+                                                            <field name="#sequence">+</field>
+                                                            <statement name="send:thing">
+                                                              <block type="__link" id="1113">
+                                                                <field name="link_to">Thing / Distance measure</field>
+                                                                <data>thing : 729 : 1</data>
+                                                              </block>
+                                                            </statement>
+                                                            <statement name="sender:RUPI">
+                                                              <block type="__link" id="1114">
+                                                                <field name="link_to">RUPI / Infrared_bot0</field>
+                                                                <data>RUPI : 728 : 1</data>
+                                                              </block>
+                                                            </statement>
+                                                            <statement name="receiver:RUPI">
+                                                              <block type="__link" id="1115">
+                                                                <field name="link_to">RUPI / Infrared_bot1</field>
+                                                                <data>RUPI : 276 : 1</data>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="send_thing$s" id="1150" collapsed="true">
+                                                                <field name="on_condition">True</field>
+                                                                <field name="#thing">+</field>
+                                                                <field name="#RUPI">+</field>
+                                                                <field name="#RUPI">+</field>
+                                                                <field name="#sequence">+</field>
+                                                                <field name="#sequence">+</field>
+                                                                <statement name="send:thing">
+                                                                  <block type="__link" id="1151">
+                                                                    <field name="link_to">Thing / Distance measure</field>
+                                                                    <data>thing : 729 : 1</data>
+                                                                  </block>
+                                                                </statement>
+                                                                <statement name="sender:RUPI">
+                                                                  <block type="__link" id="1152">
+                                                                    <field name="link_to">RUPI / Infrared_bot0</field>
+                                                                    <data>RUPI : 728 : 1</data>
+                                                                  </block>
+                                                                </statement>
+                                                                <statement name="receiver:RUPI">
+                                                                  <block type="__link" id="1154">
+                                                                    <field name="link_to">RUPI / Infrared_bot2</field>
+                                                                    <data>RUPI : 1258 : 1</data>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="send_thing$s" id="1215" collapsed="true">
+                                                                    <field name="on_condition">True</field>
+                                                                    <field name="#thing">+</field>
+                                                                    <field name="#RUPI">+</field>
+                                                                    <field name="#RUPI">+</field>
+                                                                    <field name="#sequence">+</field>
+                                                                    <field name="#sequence">+</field>
+                                                                    <statement name="send:thing">
+                                                                      <block type="__link" id="1216">
+                                                                        <field name="link_to">Thing / Distance measure</field>
+                                                                        <data>thing : 729 : 1</data>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <statement name="sender:RUPI">
+                                                                      <block type="__link" id="1223">
+                                                                        <field name="link_to">RUPI / Infrared_bot1</field>
+                                                                        <data>RUPI : 276 : 1</data>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <statement name="receiver:RUPI">
+                                                                      <block type="__link" id="1224">
+                                                                        <field name="link_to">RUPI / Infrared_bot0</field>
+                                                                        <data>RUPI : 728 : 1</data>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <next>
+                                                                      <block type="send_thing$s" id="1219" collapsed="true">
+                                                                        <field name="on_condition">True</field>
+                                                                        <field name="#thing">+</field>
+                                                                        <field name="#RUPI">+</field>
+                                                                        <field name="#RUPI">+</field>
+                                                                        <field name="#sequence">+</field>
+                                                                        <field name="#sequence">+</field>
+                                                                        <statement name="send:thing">
+                                                                          <block type="__link" id="1220">
+                                                                            <field name="link_to">Thing / Distance measure</field>
+                                                                            <data>thing : 729 : 1</data>
+                                                                          </block>
+                                                                        </statement>
+                                                                        <statement name="sender:RUPI">
+                                                                          <block type="__link" id="1225">
+                                                                            <field name="link_to">RUPI / Infrared_bot1</field>
+                                                                            <data>RUPI : 276 : 1</data>
+                                                                          </block>
+                                                                        </statement>
+                                                                        <statement name="receiver:RUPI">
+                                                                          <block type="__link" id="1226">
+                                                                            <field name="link_to">RUPI / Infrared_bot2</field>
+                                                                            <data>RUPI : 1258 : 1</data>
+                                                                          </block>
+                                                                        </statement>
+                                                                        <next>
+                                                                          <block type="send_thing$s" id="1167" collapsed="true">
+                                                                            <field name="on_condition">True</field>
+                                                                            <field name="#thing">+</field>
+                                                                            <field name="#RUPI">+</field>
+                                                                            <field name="#RUPI">+</field>
+                                                                            <field name="#sequence">+</field>
+                                                                            <field name="#sequence">+</field>
+                                                                            <statement name="send:thing">
+                                                                              <block type="__link" id="1168">
+                                                                                <field name="link_to">Thing / Distance measure</field>
+                                                                                <data>thing : 729 : 1</data>
+                                                                              </block>
+                                                                            </statement>
+                                                                            <statement name="sender:RUPI">
+                                                                              <block type="__link" id="1227">
+                                                                                <field name="link_to">RUPI / Infrared_bot2</field>
+                                                                                <data>RUPI : 1258 : 1</data>
+                                                                              </block>
+                                                                            </statement>
+                                                                            <statement name="receiver:RUPI">
+                                                                              <block type="__link" id="1228">
+                                                                                <field name="link_to">RUPI / Infrared_bot0</field>
+                                                                                <data>RUPI : 728 : 1</data>
+                                                                              </block>
+                                                                            </statement>
+                                                                            <next>
+                                                                              <block type="send_thing$s" id="1171" collapsed="true">
+                                                                                <field name="on_condition">True</field>
+                                                                                <field name="#thing">+</field>
+                                                                                <field name="#RUPI">+</field>
+                                                                                <field name="#RUPI">+</field>
+                                                                                <field name="#sequence">+</field>
+                                                                                <field name="#sequence">+</field>
+                                                                                <statement name="send:thing">
+                                                                                  <block type="__link" id="1172">
+                                                                                    <field name="link_to">Thing / Distance measure</field>
+                                                                                    <data>thing : 729 : 1</data>
+                                                                                  </block>
+                                                                                </statement>
+                                                                                <statement name="sender:RUPI">
+                                                                                  <block type="__link" id="1229">
+                                                                                    <field name="link_to">RUPI / Infrared_bot2</field>
+                                                                                    <data>RUPI : 1258 : 1</data>
+                                                                                  </block>
+                                                                                </statement>
+                                                                                <statement name="receiver:RUPI">
+                                                                                  <block type="__link" id="1230">
+                                                                                    <field name="link_to">RUPI / Infrared_bot1</field>
+                                                                                    <data>RUPI : 276 : 1</data>
+                                                                                  </block>
+                                                                                </statement>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>
